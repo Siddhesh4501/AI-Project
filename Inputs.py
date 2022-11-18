@@ -35,11 +35,11 @@ def function(branch, semester):
     for i in range(len(coursesDataFrame['Teacher_id'].tolist())):
         dept = list(final_list_2[0][i].split('_'))[0]
         if(dept == 'CS'):
-            compDepartment[final_list_2[0][i]][-1] += [[coursesDataFrame['Course_id'].tolist()[i]]]
+            compDepartment[final_list_2[0][i]][-1] += [coursesDataFrame['Course_id'].tolist()[i]]
         if(dept == 'ENTC'):
-            entcDepartment[final_list_2[0][i]][-1] += [[coursesDataFrame['Course_id'].tolist()[i]]]
+            entcDepartment[final_list_2[0][i]][-1] += [coursesDataFrame['Course_id'].tolist()[i]]
         if(dept == 'MECH'):
-            mechDepartment[final_list_2[0][i]][-1] += [[coursesDataFrame['Course_id'].tolist()[i]]]
+            mechDepartment[final_list_2[0][i]][-1] += [coursesDataFrame['Course_id'].tolist()[i]]
 
     # Each department is a dictionary with key being the Teacher_id and value is a list of - 
     # Department, Teacher name, time from, time to, courses list
@@ -48,7 +48,7 @@ def function(branch, semester):
     print("ENTC Department Faculty : ", entcDepartment)
     print()
     print("Mechanical Department Faculty : ",mechDepartment)
-    print()"""
+    print() """
 
     courses_dict = dict()
 
