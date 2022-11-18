@@ -118,7 +118,7 @@ def generator_fn(faculty, courses,course_faculty):
         if(timetable_solutions != None):
             # print("Max time ",maxTime)
             # print(timetable_solutions)
-            # TimeTable_Excel_Maker.excel_maker(courses,timetable_solutions)
+            TimeTable_Excel_Maker.excel_maker(courses,timetable_solutions)
             return timetable_solutions
         # print(timetable_solutions)
         # print(courses, faculty)

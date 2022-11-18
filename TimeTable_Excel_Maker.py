@@ -65,4 +65,18 @@ def excel_maker(courses, period_dict):
             row = time_excel_coordinates[day_time][1]
             sheet[col + str(row)].value = course_short_name
 
+        else:
+            lab = list(day_time.split('_'))
+            if(lab[1]=='10' and lab[2]=='12'):
+                lab_1 = lab[0] + "_" + lab[1] + "_11"
+                if(lab_1 in time_excel_coordinates):
+                    col = time_excel_coordinates[lab_1][0]
+                    row = time_excel_coordinates[lab_1][1]
+                    sheet[col + str(row)].value = course_short_name
+                lab_2 = lab[0] + "_11_" + lab[2]
+                if(lab_2 in time_excel_coordinates):
+                    col = time_excel_coordinates[lab_2][0]
+                    row = time_excel_coordinates[lab_2][1]
+                    sheet[col + str(row)].value = course_short_name
+
     wb.save('TimeTables/CSE_Sem_5.xlsx')
