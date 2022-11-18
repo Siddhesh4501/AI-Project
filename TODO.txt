@@ -1,8 +1,4 @@
-add list of timings of lectures of instructor in faculty dictionary
-number of lectures = number of credits = duration
-no two lectures should clash
+check for teachers timing (availability)
 availability of classrooms (new list)
-one day one lecture of a subject - lab and theory lecture allowed
-lab course should be conducted 2 hrs cont. - Lab between 9:00 to 12:00
 
 next = balanced lectures
