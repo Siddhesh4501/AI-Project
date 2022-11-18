@@ -1,4 +1,4 @@
-Timetable Generator
+# Timetable Generator
 
 
 # How to Use
