@@ -75,7 +75,7 @@ def function(branch, semester):
                     comp_courses_acc_sem[key] = courses_dict[key]
                     comp_course_faculty_acc_sem[key] = course_faculty[key]
 
-        return CSP.generator_fn(compDepartment, comp_courses_acc_sem,comp_course_faculty_acc_sem)
+        return CSP.generator_fn(compDepartment, comp_courses_acc_sem,comp_course_faculty_acc_sem, "CSE", semester)
 
     elif(branch == 2):
         entc_courses_acc_sem = dict()
@@ -90,7 +90,7 @@ def function(branch, semester):
                     entc_course_faculty_acc_sem[key] = course_faculty[key]
 
 
-        return CSP.generator_fn(entcDepartment, entc_courses_acc_sem,entc_course_faculty_acc_sem)
+        return CSP.generator_fn(entcDepartment, entc_courses_acc_sem,entc_course_faculty_acc_sem, "ENTC", semester)
 
     else:
         mech_courses_acc_sem = dict()
@@ -104,4 +104,4 @@ def function(branch, semester):
                     mech_courses_acc_sem[key] = courses_dict[key]
                     mech_course_faculty_acc_sem[key] = course_faculty[key]
 
-        return CSP.generator_fn(mechDepartment, mech_courses_acc_sem, mech_course_faculty_acc_sem)
+        return CSP.generator_fn(mechDepartment, mech_courses_acc_sem, mech_course_faculty_acc_sem, "MECH", semester)

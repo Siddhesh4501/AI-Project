@@ -34,7 +34,7 @@ def unique_lec_per_day(slot1,slot2):
 
 
 
-def generator_fn(faculty, courses,course_faculty):
+def generator_fn(faculty, courses,course_faculty, department, semester):
     global global_course_faculty
     global_course_faculty=course_faculty
     global global_faculty
@@ -118,7 +118,7 @@ def generator_fn(faculty, courses,course_faculty):
         if(timetable_solutions != None):
             # print("Max time ",maxTime)
             # print(timetable_solutions)
-            TimeTable_Excel_Maker.excel_maker(courses,timetable_solutions)
+            TimeTable_Excel_Maker.excel_maker(courses,timetable_solutions, department, semester)
             return timetable_solutions
         # print(timetable_solutions)
         # print(courses, faculty)
