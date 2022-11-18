@@ -18,7 +18,7 @@ def parse(courses):
     return final_lst
 
 def is_lab(course,courses):
-    if(int(courses[course[:-2]][-2])==2):
+    if(int(courses[course[:-2]][-3])==2):
         return True
     return False
 

@@ -50,30 +50,33 @@ time_excel_coordinates = {
 }
 
 def excel_maker(courses, period_dict, department, semester):
+    print(f"Dept is {department}, sem is {semester} ")
+    filename = f"{department}_Sem_{str(semester)}"
+    wb = openpyxl.load_workbook(f'TimeTables/{filename}.xlsx')   
+    sheet = wb.get_sheet_by_name('Sheet1')
+    # if(department == "CSE" and semester == 5):
+    #     wb = openpyxl.load_workbook('TimeTables/CSE_Sem_5.xlsx')   
+    #     sheet = wb.get_sheet_by_name('Sheet1')
 
-    if(department == "CSE" and semester == 5):
-        wb = openpyxl.load_workbook('TimeTables/CSE_Sem_5.xlsx')   
-        sheet = wb.get_sheet_by_name('Sheet1')
+    # if(department == "CSE" and semester == 6):
+    #     wb = openpyxl.load_workbook('TimeTables/CSE_Sem_6.xlsx')   
+    #     sheet = wb.get_sheet_by_name('Sheet1')
 
-    if(department == "CSE" and semester == 6):
-        wb = openpyxl.load_workbook('TimeTables/CSE_Sem_6.xlsx')   
-        sheet = wb.get_sheet_by_name('Sheet1')
+    # if(department == "MECH" and semester == 5):
+    #     wb = openpyxl.load_workbook('TimeTables/MECH_Sem_5.xlsx')   
+    #     sheet = wb.get_sheet_by_name('Sheet1')
 
-    if(department == "MECH" and semester == 5):
-        wb = openpyxl.load_workbook('TimeTables/MECH_Sem_5.xlsx')   
-        sheet = wb.get_sheet_by_name('Sheet1')
+    # if(department == "MECH" and semester == 6):
+    #     wb = openpyxl.load_workbook('TimeTables/MECH_Sem_6.xlsx')   
+    #     sheet = wb.get_sheet_by_name('Sheet1')
 
-    if(department == "MECH" and semester == 6):
-        wb = openpyxl.load_workbook('TimeTables/MECH_Sem_6.xlsx')   
-        sheet = wb.get_sheet_by_name('Sheet1')
+    # if(department == "ENTC" and semester == 5):
+    #     wb = openpyxl.load_workbook('TimeTables/ENTC_Sem_5.xlsx')   
+    #     sheet = wb.get_sheet_by_name('Sheet1')
 
-    if(department == "ENTC" and semester == 5):
-        wb = openpyxl.load_workbook('TimeTables/ENTC_Sem_5.xlsx')   
-        sheet = wb.get_sheet_by_name('Sheet1')
-
-    if(department == "ENTC" and semester == 6):
-        wb = openpyxl.load_workbook('TimeTables/ENTC_Sem_6.xlsx')   
-        sheet = wb.get_sheet_by_name('Sheet1')
+    # if(department == "ENTC" and semester == 6):
+    #     wb = openpyxl.load_workbook('TimeTables/ENTC_Sem_6.xlsx')   
+    #     sheet = wb.get_sheet_by_name('Sheet1')
     
     for key in period_dict:
         course = list(key.split('_'))
@@ -100,4 +103,4 @@ def excel_maker(courses, period_dict, department, semester):
                     row = time_excel_coordinates[lab_2][1]
                     sheet[col + str(row)].value = course_short_name
 
-    wb.save('TimeTables/CSE_Sem_5.xlsx')
+    wb.save(f'TimeTables/{filename}.xlsx')
