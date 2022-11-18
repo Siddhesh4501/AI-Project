@@ -1,4 +1,5 @@
 import openpyxl
+import shutil
 
 time_excel_coordinates = {
     'Mon_9_10' : ['B',7],
@@ -49,35 +50,13 @@ time_excel_coordinates = {
 
 }
 
-def excel_maker(courses, period_dict, department, semester):
-    print(f"Dept is {department}, sem is {semester} ")
+def excel_maker(courses, period_dict, department, semester, course_faculty, faculty):
+    
     filename = f"{department}_Sem_{str(semester)}"
+    shutil.copyfile('Generated_Timetable_Template.xlsx',f'TimeTables/{filename}.xlsx')
     wb = openpyxl.load_workbook(f'TimeTables/{filename}.xlsx')   
     sheet = wb.get_sheet_by_name('Sheet1')
-    # if(department == "CSE" and semester == 5):
-    #     wb = openpyxl.load_workbook('TimeTables/CSE_Sem_5.xlsx')   
-    #     sheet = wb.get_sheet_by_name('Sheet1')
 
-    # if(department == "CSE" and semester == 6):
-    #     wb = openpyxl.load_workbook('TimeTables/CSE_Sem_6.xlsx')   
-    #     sheet = wb.get_sheet_by_name('Sheet1')
-
-    # if(department == "MECH" and semester == 5):
-    #     wb = openpyxl.load_workbook('TimeTables/MECH_Sem_5.xlsx')   
-    #     sheet = wb.get_sheet_by_name('Sheet1')
-
-    # if(department == "MECH" and semester == 6):
-    #     wb = openpyxl.load_workbook('TimeTables/MECH_Sem_6.xlsx')   
-    #     sheet = wb.get_sheet_by_name('Sheet1')
-
-    # if(department == "ENTC" and semester == 5):
-    #     wb = openpyxl.load_workbook('TimeTables/ENTC_Sem_5.xlsx')   
-    #     sheet = wb.get_sheet_by_name('Sheet1')
-
-    # if(department == "ENTC" and semester == 6):
-    #     wb = openpyxl.load_workbook('TimeTables/ENTC_Sem_6.xlsx')   
-    #     sheet = wb.get_sheet_by_name('Sheet1')
-    
     for key in period_dict:
         course = list(key.split('_'))
         course.pop(-1)
@@ -102,5 +81,22 @@ def excel_maker(courses, period_dict, department, semester):
                     col = time_excel_coordinates[lab_2][0]
                     row = time_excel_coordinates[lab_2][1]
                     sheet[col + str(row)].value = course_short_name
+
+    course_id_col = [66, 32]
+    course_name_col = [67, 32]
+    teacher_name_col = [68, 32]
+    counter = 1
+
+    for key in course_faculty:
+        course_id = key
+        course_name = courses[key][0]
+        teacher_name = faculty[course_faculty[key]][1]
+
+        # Adding course_id
+        sheet[chr(course_id_col[0]) + str(course_id_col[1] + counter)].value = course_id
+        sheet[chr(course_name_col[0]) + str(course_name_col[1] + counter)].value = course_name
+        sheet[chr(teacher_name_col[0]) + str(teacher_name_col[1] + counter)].value = teacher_name
+
+        counter+=1
 
     wb.save(f'TimeTables/{filename}.xlsx')
