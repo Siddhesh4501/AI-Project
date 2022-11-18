@@ -9,3 +9,4 @@ sem = int(input())
 
 timetable = Inputs.function(branch, sem)
 print(timetable)
+

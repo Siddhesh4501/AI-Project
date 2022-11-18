@@ -4,6 +4,8 @@ from math import ceil
 # global_faculty=None
 # current_course=None
 # global_count=0
+import TimeTable_Excel_Maker
+
 # Courses Dictionary contains course ID as key and value is a list of course name, credits, duration, semester
 def parse(courses):
     final_lst = []
@@ -84,7 +86,6 @@ def generator_fn(faculty, courses,course_faculty):
         timetable.addVariables(final_courses, period_list)
         timetable.addConstraint(AllDifferentConstraint())
         for course1 in final_courses:
-
             for course2 in final_courses:
                 if(course1[:-2] == course2[:-2] ):
                     if(course1 < course2):
@@ -96,6 +97,13 @@ def generator_fn(faculty, courses,course_faculty):
                 # print(course)
                 # timetable.addConstraint(lambda slot1,slot2: slot1[4:]=="10_12",(course,course))
                 timetable.addConstraint(lab_constraint,(course,course))
+                    
+    
+    
+    # print(courses, faculty)
+
+
+        
         # for course in final_courses:
         #     global current_course
         #     current_course=course
@@ -110,6 +118,7 @@ def generator_fn(faculty, courses,course_faculty):
         if(timetable_solutions != None):
             # print("Max time ",maxTime)
             # print(timetable_solutions)
+            # TimeTable_Excel_Maker.excel_maker(courses,timetable_solutions)
             return timetable_solutions
         # print(timetable_solutions)
         # print(courses, faculty)
