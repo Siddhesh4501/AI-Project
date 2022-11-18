@@ -81,14 +81,14 @@ def excel_maker(courses, period_dict, department, semester, course_faculty, facu
                     col = time_excel_coordinates[lab_2][0]
                     row = time_excel_coordinates[lab_2][1]
                     sheet[col + str(row)].value = course_short_name
-
+    
     course_id_col = [66, 32]
     course_name_col = [67, 32]
     teacher_name_col = [68, 32]
     counter = 1
 
     for key in course_faculty:
-        course_id = key
+        course_id = courses[key][-1]
         course_name = courses[key][0]
         teacher_name = faculty[course_faculty[key]][1]
 
