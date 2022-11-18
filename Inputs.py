@@ -1,6 +1,6 @@
 import pandas as pd
 import CSP
-
+import datetime
 classrooms = ["AC101","AC102","AC103","AC201","AC202","AC203"]
 
 def function(branch, semester):
@@ -26,11 +26,11 @@ def function(branch, semester):
     for i in range(len(facultyDataFrame['Teacher_id'].tolist())):
         dept = list(final_list[0][i].split('_'))[0]
         if(dept == 'CS'):
-            compDepartment[final_list[0][i]] += [facultyDataFrame['Department'].tolist()[i], facultyDataFrame['Teacher_name'].tolist()[i], facultyDataFrame['Time_from'].tolist()[i], facultyDataFrame['Time_to'].tolist()[i], []]
+            compDepartment[final_list[0][i]] += [facultyDataFrame['Department'].tolist()[i], facultyDataFrame['Teacher_name'].tolist()[i], facultyDataFrame['Time_from'].tolist()[i].hour, facultyDataFrame['Time_to'].tolist()[i].hour, []]
         if(dept == 'ENTC'):
-            entcDepartment[final_list[0][i]] += [facultyDataFrame['Department'].tolist()[i], facultyDataFrame['Teacher_name'].tolist()[i], facultyDataFrame['Time_from'].tolist()[i], facultyDataFrame['Time_to'].tolist()[i], []]
+            entcDepartment[final_list[0][i]] += [facultyDataFrame['Department'].tolist()[i], facultyDataFrame['Teacher_name'].tolist()[i], facultyDataFrame['Time_from'].tolist()[i].hour, facultyDataFrame['Time_to'].tolist()[i].hour, []]
         if(dept == 'MECH'):
-            mechDepartment[final_list[0][i]] += [facultyDataFrame['Department'].tolist()[i], facultyDataFrame['Teacher_name'].tolist()[i], facultyDataFrame['Time_from'].tolist()[i], facultyDataFrame['Time_to'].tolist()[i], []]
+            mechDepartment[final_list[0][i]] += [facultyDataFrame['Department'].tolist()[i], facultyDataFrame['Teacher_name'].tolist()[i], facultyDataFrame['Time_from'].tolist()[i].hour, facultyDataFrame['Time_to'].tolist()[i].hour, []]
 
     final_list_2 = [coursesDataFrame['Teacher_id'].tolist(), coursesDataFrame['Course_id'].tolist(), coursesDataFrame['Course_name'].tolist(), coursesDataFrame['Semester'].tolist(), coursesDataFrame['Duration'].tolist(), coursesDataFrame['Credits'].tolist()]
     for i in range(len(coursesDataFrame['Teacher_id'].tolist())):
@@ -75,7 +75,7 @@ def function(branch, semester):
                     comp_courses_acc_sem[key] = courses_dict[key]
                     comp_course_faculty_acc_sem[key] = course_faculty[key]
 
-        CSP.generator_fn(compDepartment, comp_courses_acc_sem,comp_course_faculty_acc_sem)
+        return CSP.generator_fn(compDepartment, comp_courses_acc_sem,comp_course_faculty_acc_sem)
 
     elif(branch == 2):
         entc_courses_acc_sem = dict()
@@ -90,7 +90,7 @@ def function(branch, semester):
                     entc_course_faculty_acc_sem[key] = course_faculty[key]
 
 
-        CSP.generator_fn(entcDepartment, entc_courses_acc_sem,entc_course_faculty_acc_sem)
+        return CSP.generator_fn(entcDepartment, entc_courses_acc_sem,entc_course_faculty_acc_sem)
 
     else:
         mech_courses_acc_sem = dict()
@@ -104,4 +104,4 @@ def function(branch, semester):
                     mech_courses_acc_sem[key] = courses_dict[key]
                     mech_course_faculty_acc_sem[key] = course_faculty[key]
 
-        CSP.generator_fn(mechDepartment, mech_courses_acc_sem, mech_course_faculty_acc_sem)
+        return CSP.generator_fn(mechDepartment, mech_courses_acc_sem, mech_course_faculty_acc_sem)

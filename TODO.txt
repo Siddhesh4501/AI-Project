@@ -1,4 +1,1 @@
 check for teachers timing (availability)
-availability of classrooms (new list)
-
-next = balanced lectures

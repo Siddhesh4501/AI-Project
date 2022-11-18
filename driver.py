@@ -7,4 +7,5 @@ branch = int(input())
 print("Enter Semester - ")
 sem = int(input())
 
-Inputs.function(branch, sem)
+timetable = Inputs.function(branch, sem)
+print(timetable)
