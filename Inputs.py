@@ -32,7 +32,7 @@ def function(branch, semester):
         if(dept == 'MECH'):
             mechDepartment[final_list[0][i]] += [facultyDataFrame['Department'].tolist()[i], facultyDataFrame['Teacher_name'].tolist()[i], facultyDataFrame['Time_from'].tolist()[i], facultyDataFrame['Time_to'].tolist()[i], []]
 
-    final_list_2 = [coursesDataFrame['Teacher_id'].tolist(), coursesDataFrame['Course_id'].tolist(), coursesDataFrame['Course_name'].tolist(), coursesDataFrame['Semester'].tolist(), coursesDataFrame['Duration'].tolist(), coursesDataFrame['Credits'].tolist()]
+    final_list_2 = [coursesDataFrame['Teacher_id'].tolist(), coursesDataFrame['Course_id'].tolist(), coursesDataFrame['Course_name'].tolist(), coursesDataFrame['Semester'].tolist(), coursesDataFrame['Duration'].tolist(), coursesDataFrame['Credits'].tolist(), coursesDataFrame['Course_short_name'].tolist()]
     for i in range(len(coursesDataFrame['Teacher_id'].tolist())):
         course_faculty[final_list_2[1][i]] = final_list_2[0][i] 
     
@@ -58,9 +58,9 @@ def function(branch, semester):
 
     for i in range(len(coursesDataFrame['Teacher_id'].tolist())):
         if(coursesDataFrame['Course_id'].tolist()[i] not in courses_dict):
-            courses_dict[coursesDataFrame['Course_id'].tolist()[i]] = [coursesDataFrame['Course_name'].tolist()[i], coursesDataFrame['Credits'].tolist()[i], coursesDataFrame['Duration'].tolist()[i], coursesDataFrame['Semester'].tolist()[i]]
+            courses_dict[coursesDataFrame['Course_id'].tolist()[i]] = [coursesDataFrame['Course_name'].tolist()[i], coursesDataFrame['Credits'].tolist()[i], coursesDataFrame['Duration'].tolist()[i], coursesDataFrame['Semester'].tolist()[i], coursesDataFrame['Course_short_name'].tolist()[i]]
 
-    # Courses Dictionary contains course ID as key and value is a list of course name, credits, duration, semester
+    # Courses Dictionary contains course ID as key and value is a list of course name, credits, duration, semester, course short name
 
     # print("Courses Dictionary : ",courses_dict)
 

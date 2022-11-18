@@ -1,4 +1,5 @@
 from constraint import *
+import TimeTable_Excel_Maker
 
 # Courses Dictionary contains course ID as key and value is a list of course name, credits, duration, semester
 def parse(courses):
@@ -81,6 +82,7 @@ def generator_fn(faculty, courses,course_faculty):
     
     timetable_solutions = timetable.getSolution()
     print(timetable_solutions)
+    TimeTable_Excel_Maker.excel_maker(courses,timetable_solutions)
     # print(courses, faculty)
 
 # generator_fn("ffd","fd")
