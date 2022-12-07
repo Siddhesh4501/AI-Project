@@ -43,19 +43,9 @@ def new_period_list(faculty, course, course_faculty, period_list):
     return time_slots_lst
         
 def generator_fn(faculty, courses,course_faculty, department, semester):
-    # print("printing courses")
-    # print(courses)
-    # print()
-    # print("printing faculty")
-    # print(faculty)
-    # print()
-    # print("printing course_faculty")
-    # print(course_faculty)
-    
+   
     # to handle number of classes in a week
     final_courses = parse(courses)
-    # print(final_courses)
-    # print(len(final_courses))
     left=10+ceil((len(final_courses) + 5)/5) + 1
     # To build a balanced timetable
     for maxTime in range(left,18):
@@ -79,17 +69,7 @@ def generator_fn(faculty, courses,course_faculty, department, semester):
                 if(time != 11 and time != 12):
                     period_list.append(a)
 
-        # print()
-        # print("Slots")
-        # print(period_list)
-        # print()
-        # print("final_course list")
-        # print(final_courses)
-        # creating pse_1, pse_2, pse_3 to handle 3 credits
-
         # (variable,values)
-        # timetable.addVariables(final_courses, period_list)
-        # faculty, course, course_faculty, period_list
         for course in final_courses:
             timetable.addVariable(course,new_period_list(faculty,course,course_faculty,period_list))
         
@@ -103,10 +83,7 @@ def generator_fn(faculty, courses,course_faculty, department, semester):
         
         for course in final_courses:
             if(is_lab(course,courses)):
-                # print(course)
-                # timetable.addConstraint(lambda slot1,slot2: slot1[4:]=="10_12",(course,course))
                 timetable.addConstraint(lab_constraint,(course,course))                   
-    # print(courses, faculty)
 
         timetable_solutions = timetable.getSolution()
         if(timetable_solutions != None):
@@ -114,5 +91,3 @@ def generator_fn(faculty, courses,course_faculty, department, semester):
             print(timetable_solutions)
             TimeTable_Excel_Maker.excel_maker(courses,timetable_solutions, department, semester, course_faculty, faculty)
             return timetable_solutions
-        # print(timetable_solutions)
-        # print(courses, faculty)

@@ -23,5 +23,4 @@ filename = f"{b}_Sem_{str(sem)}"
 
 if(timetable):
     print("Your Timetable has been successfully generated please check Timetables folder for file -", filename)
-# print(timetable)
 

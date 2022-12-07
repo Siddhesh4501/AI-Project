@@ -46,12 +46,6 @@ def function(branch, semester):
 
     # Each department is a dictionary with key being the Teacher_id and value is a list of - 
     # Department, Teacher name, time from, time to, courses list
-    """print("Computer Department Faculty : ",compDepartment)
-    print()
-    print("ENTC Department Faculty : ", entcDepartment)
-    print()
-    print("Mechanical Department Faculty : ",mechDepartment)
-    print() """
 
     courses_dict = dict()
 
@@ -60,8 +54,6 @@ def function(branch, semester):
             courses_dict[coursesDataFrame['Course_id'].tolist()[i]] = [coursesDataFrame['Course_name'].tolist()[i], coursesDataFrame['Credits'].tolist()[i], coursesDataFrame['Duration'].tolist()[i], coursesDataFrame['Semester'].tolist()[i], coursesDataFrame['Course_short_name'].tolist()[i]]
 
     # Courses Dictionary contains course ID as key and value is a list of course name, credits, duration, semester, course short name
-
-    # print("Courses Dictionary : ",courses_dict)
 
     if(branch == 1):
         comp_courses_acc_sem = dict()
