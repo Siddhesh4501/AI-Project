@@ -1,7 +1,6 @@
 import pandas as pd
 import CSP
-
-classrooms = ["AC101","AC102","AC103","AC201","AC202","AC203"]
+from datetime import *
 
 def function(branch, semester):
  
@@ -26,11 +25,11 @@ def function(branch, semester):
     for i in range(len(facultyDataFrame['Teacher_id'].tolist())):
         dept = list(final_list[0][i].split('_'))[0]
         if(dept == 'CS'):
-            compDepartment[final_list[0][i]] += [facultyDataFrame['Department'].tolist()[i], facultyDataFrame['Teacher_name'].tolist()[i], facultyDataFrame['Time_from'].tolist()[i], facultyDataFrame['Time_to'].tolist()[i], []]
+            compDepartment[final_list[0][i]] += [facultyDataFrame['Department'].tolist()[i], facultyDataFrame['Teacher_name'].tolist()[i], facultyDataFrame['Time_from'].tolist()[i].hour, facultyDataFrame['Time_to'].tolist()[i].hour, []]
         if(dept == 'ENTC'):
-            entcDepartment[final_list[0][i]] += [facultyDataFrame['Department'].tolist()[i], facultyDataFrame['Teacher_name'].tolist()[i], facultyDataFrame['Time_from'].tolist()[i], facultyDataFrame['Time_to'].tolist()[i], []]
+            entcDepartment[final_list[0][i]] += [facultyDataFrame['Department'].tolist()[i], facultyDataFrame['Teacher_name'].tolist()[i], facultyDataFrame['Time_from'].tolist()[i].hour, facultyDataFrame['Time_to'].tolist()[i].hour, []]
         if(dept == 'MECH'):
-            mechDepartment[final_list[0][i]] += [facultyDataFrame['Department'].tolist()[i], facultyDataFrame['Teacher_name'].tolist()[i], facultyDataFrame['Time_from'].tolist()[i], facultyDataFrame['Time_to'].tolist()[i], []]
+            mechDepartment[final_list[0][i]] += [facultyDataFrame['Department'].tolist()[i], facultyDataFrame['Teacher_name'].tolist()[i], facultyDataFrame['Time_from'].tolist()[i].hour, facultyDataFrame['Time_to'].tolist()[i].hour, []]
 
     final_list_2 = [coursesDataFrame['Teacher_id'].tolist(), coursesDataFrame['Course_id'].tolist(), coursesDataFrame['Course_name'].tolist(), coursesDataFrame['Semester'].tolist(), coursesDataFrame['Duration'].tolist(), coursesDataFrame['Credits'].tolist(), coursesDataFrame['Course_short_name'].tolist()]
     for i in range(len(coursesDataFrame['Teacher_id'].tolist())):
