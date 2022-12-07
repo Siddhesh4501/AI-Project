@@ -14,19 +14,23 @@ def parse(courses):
             final_lst.append(tmp)
     return final_lst
 
+# checks if the course is a Lab course
 def is_lab(course,courses):
     if(int(courses[course[:-2]][-3])==2):
         return True
     return False
 
+
 # lab should be only scheduled in the given time slot
 def lab_constraint(slot,_):
     return slot[4:] == "10_12"
+
 
 # i.e. only one lec of a subject per day
 def unique_lec_per_day(slot1,slot2):
     return slot1[:3] != slot2[:3]
 
+# creating a time_slots considering faculty availability 
 def new_period_list(faculty, course, course_faculty, period_list):
     time_slots_lst = []
     course_name = course[:-2]
@@ -38,10 +42,12 @@ def new_period_list(faculty, course, course_faculty, period_list):
         lst = slots.split("_")
         start = int(lst[1])
         end = int(lst[2])
+        # only appending if the teacher is available
         if(start >= available_start and end <= available_end):
             time_slots_lst.append(slots)
     return time_slots_lst
         
+# function which adds Constraints
 def generator_fn(faculty, courses,course_faculty, department, semester):
    
     # to handle number of classes in a week
@@ -89,5 +95,6 @@ def generator_fn(faculty, courses,course_faculty, department, semester):
         if(timetable_solutions != None):
             # print("Max time ",maxTime)
             print(timetable_solutions)
+            # outpting the obtained solution in excel sheet
             TimeTable_Excel_Maker.excel_maker(courses,timetable_solutions, department, semester, course_faculty, faculty)
             return timetable_solutions
