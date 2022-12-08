@@ -1,6 +1,7 @@
 import openpyxl
 import shutil
 
+# defining the excel coordinates where the data has to be written
 time_excel_coordinates = {
     'Mon_9_10' : ['B',7],
     'Mon_10_11' : ['B',10],
@@ -53,22 +54,29 @@ time_excel_coordinates = {
 def excel_maker(courses, period_dict, department, semester, course_faculty, faculty):
     
     filename = f"{department}_Sem_{str(semester)}"
+    # copying the template into our new file 
     shutil.copyfile('Generated_Timetable_Template.xlsx',f'TimeTables/{filename}.xlsx')
     wb = openpyxl.load_workbook(f'TimeTables/{filename}.xlsx')   
     sheet = wb.get_sheet_by_name('Sheet1')
 
+    # period dict is mapping between courses and the timeslot basically solution of our csp function
     for key in period_dict:
+        # stripping pse_01, pse_02 to pse
         course = list(key.split('_'))
         course.pop(-1)
         course = '_'.join(course)
+        
         course_short_name = courses[course][-1]
         day_time = period_dict[key]
+        
+        # getting the cell in which we have to write using the dict declared above
         if(day_time in time_excel_coordinates):
             col = time_excel_coordinates[day_time][0]
             row = time_excel_coordinates[day_time][1]
             sheet[col + str(row)].value = course_short_name
 
         else:
+            # handling the lab sessions
             lab = list(day_time.split('_'))
             if(lab[1]=='10' and lab[2]=='12'):
                 lab_1 = lab[0] + "_" + lab[1] + "_11"
@@ -87,6 +95,7 @@ def excel_maker(courses, period_dict, department, semester, course_faculty, facu
     teacher_name_col = [68, 32]
     counter = 1
 
+    # adding legend at the bottom of the file
     for key in course_faculty:
         course_id = courses[key][-1]
         course_name = courses[key][0]

@@ -31,7 +31,7 @@ def unique_lec_per_day(slot1,slot2):
     return slot1[:3] != slot2[:3]
 
 # creating a time_slots considering faculty availability 
-def new_period_list(faculty, course, course_faculty, period_list):
+def new_time_slots_list(faculty, course, course_faculty, period_list):
     time_slots_lst = []
     course_name = course[:-2]
     faculty_name = course_faculty[course_name]
@@ -52,20 +52,20 @@ def generator_fn(faculty, courses,course_faculty, department, semester):
    
     # to handle number of classes in a week
     final_courses = parse(courses)
-    left=10+ceil((len(final_courses) + 5)/5) + 1
+    left = 10 + ceil((len(final_courses) + 5)/5) + 1
     # To build a balanced timetable
-    for maxTime in range(left,18):
+    for max_time in range(left,18):
         
         timetable = Problem()
 
-        # Assuming college timimgs are 9:00 AM - 6:00 PM, Mon - Fri
+        # Assuming college timimgs are 10:00 AM - 6:00 PM, Mon - Fri
 
-        # Mon_9 means lacture on Monday from 9:00 AM - 10:00 AM
+        # Mon_10_11 means lecture on Monday from 10:00 AM - 11:00 AM
 
         period_list = []
         # defining values that is lecture slots in our case
         for day in ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']:
-            for time in range(10,maxTime): 
+            for time in range(10,max_time): 
                 a = None
                 if time == 10:
                     a = day + "_" + str(time) + "_" +str(time+2)
@@ -77,7 +77,7 @@ def generator_fn(faculty, courses,course_faculty, department, semester):
 
         # (variable,values)
         for course in final_courses:
-            timetable.addVariable(course,new_period_list(faculty,course,course_faculty,period_list))
+            timetable.addVariable(course,new_time_slots_list(faculty,course,course_faculty,period_list))
         
         timetable.addConstraint(AllDifferentConstraint())
         for course1 in final_courses:
@@ -93,8 +93,9 @@ def generator_fn(faculty, courses,course_faculty, department, semester):
 
         timetable_solutions = timetable.getSolution()
         if(timetable_solutions != None):
-            # print("Max time ",maxTime)
-            print(timetable_solutions)
+            # print("Max time ",max_time)
+            # print(timetable_solutions)
             # outpting the obtained solution in excel sheet
             TimeTable_Excel_Maker.excel_maker(courses,timetable_solutions, department, semester, course_faculty, faculty)
             return timetable_solutions
+    print("No solutions satisfying constraints exist")
